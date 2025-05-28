@@ -25,8 +25,8 @@ int existe(int tamanhoOrdem, int vetor[], int valor)
 
 int main() {
 
-    int cheques[TAMANHO];
-    int chequesOrganizados[TAMANHO];
+    int cheques[30];
+    int chequesOrganizados[30];
 
     srand((unsigned)time(NULL));
 
@@ -39,27 +39,33 @@ int main() {
             cheques[tamanhoFeito] = numAleatorio;
             tamanhoFeito++;
         }
-    }while (tamanhoFeito < TAMANHO);
+    }while (tamanhoFeito < 30);
 
     // Mostra Os Cheques Antes De Ordena-Los
     printf("Cheques embaralhados:\n");
-    for (int i = 0; i < TAMANHO; i++) {
+    for (int i = 0; i < 30; i++) {
         printf("%d ", cheques[i]);
     }
     printf("\n\n");
 
-    // Coloca os Cheques em Ordem Usando a Mesma Logica Do Embaralhamento
-    tamanhoFeito = 0;
-    for (int i = 1; i <= TAMANHO; i++) {
-        if (existe(tamanhoFeito, chequesOrganizados, i) == 1) {
-            chequesOrganizados[tamanhoFeito] = i;
-            tamanhoFeito++;
+    for (int i = 0; i < 30; i++) {
+    chequesOrganizados[i] = cheques[i];
+    }
+
+    //Bubble Sort
+    for (int i = 0; i < 30 - 1; i++) {
+        for (int j = 0; j < 30 - i - 1; j++) {
+            if (chequesOrganizados[j] > chequesOrganizados[j + 1]) {
+                int temp = chequesOrganizados[j];
+                chequesOrganizados[j] = chequesOrganizados[j + 1];
+                chequesOrganizados[j + 1] = temp;
+            }
         }
     }
 
     // Mostra Os Cheques Em Ordem
     printf("Cheques Ordenados:\n");
-    for (int i = 0; i < TAMANHO; i++) {
+    for (int i = 0; i < 30; i++) {
         printf("%d ", chequesOrganizados[i]);
     }
 
